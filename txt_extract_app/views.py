@@ -9,10 +9,13 @@ import uuid
 from .models import Document
 from .utils.process_file import handle_uploaded_file
 
+
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
     documents = Document.objects.filter(user=request.user)
+    if q := request.GET.get('q'):
+        documents = Document.objects.filter(user=request.user, fileName__icontains=q)
     return render(request, 'txt_extract_app/list.html', {'documents': documents})
 
 

@@ -1,5 +1,9 @@
 {% extends 'main.html' %}
 {% block content %}
+<form action="{% url 'list_pdf' %}">
+    <input type="text" name="q" placeholder="Search pdfs....">
+</form>
+
 <table class="table">
     <thead>
         <tr>
