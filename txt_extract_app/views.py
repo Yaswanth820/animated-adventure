@@ -12,13 +12,18 @@ from .utils.process_file import handle_uploaded_file
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    documents = Document.objects.all()
+    documents = Document.objects.filter(user=request.user)
     return render(request, 'txt_extract_app/list.html', {'documents': documents})
+
 
 @login_required(login_url='login')
 def show_pdf(request, pk):
-    document = Document.objects.get(id=pk)
+    try:
+        document = Document.objects.get(user=request.user, id=pk)
+    except:
+        return render(request, '404.html')
     return render(request, 'txt_extract_app/show_pdf.html', {'document': document})
+
 
 @login_required(login_url='login')
 def upload_pdf(request):
@@ -41,9 +46,11 @@ def login_page(request):
             messages.error(request, 'Username or password is incorrect')
     return render(request, 'txt_extract_app/login_register.html', {'login': True})
 
+
 def logout_user(request):
     logout(request)
     return redirect('login')
+
 
 def register_page(request):
     form = UserCreationForm()
