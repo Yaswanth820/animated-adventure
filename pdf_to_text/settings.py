@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'txt_extract_app.apps.TxtExtractAppConfig',
 ]
 
 MIDDLEWARE = [
