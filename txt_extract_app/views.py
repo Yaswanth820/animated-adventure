@@ -29,26 +29,33 @@ def show_pdf(request, pk):
 
 
 @login_required(login_url='login')
-def upload_pdf(request):
+def upload_document(request):
     if request.method == 'POST':
         try:
             pdf = request.FILES['pdf']
+            cover = request.FILES['cover']
         except:
-            messages.error(request, 'No file selected')
-            return render(request, 'txt_extract_app/upload_pdf.html')
+            messages.error(request, 'You have to upload both pdf and a cover image')
+            return render(request, 'txt_extract_app/upload.html')
 
         if not pdf.name.endswith('.pdf'):
             messages.error(request, 'File must be a pdf')
-            return render(request, 'txt_extract_app/upload_pdf.html')
+            return render(request, 'txt_extract_app/upload.html')
+
+        if not (cover.name.endswith('.jpg') or cover.name.endswith('.jpeg') or cover.name.endswith('.png')):
+            messages.error(request, 'File must be an image')
+            return render(request, 'txt_extract_app/upload.html')
 
         pdf.name = f'{uuid.uuid4()}-{pdf.name}'
+        cover.name = f'{uuid.uuid4()}-{cover.name}'
+
         text = handle_uploaded_file(pdf, pdf.name)
         
-        document = Document(user=request.user, text=text, fileName=pdf.name, pdf=pdf)
+        document = Document(user=request.user, text=text, fileName=pdf.name, pdf=pdf, cover=cover)
         document.save()
 
         messages.success(request, 'File uploaded successfully')
-    return render(request, 'txt_extract_app/upload_pdf.html')
+    return render(request, 'txt_extract_app/upload.html')
 
 
 def login_page(request):

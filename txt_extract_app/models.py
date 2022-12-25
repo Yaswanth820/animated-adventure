@@ -8,6 +8,7 @@ class Document(models.Model):
     text = models.TextField()
     fileName = models.CharField(max_length=255)
     pdf = models.FileField(upload_to='pdfs/')
-    
+    cover = models.ImageField(upload_to='covers/', blank=True, null=True)
+
     def __str__(self):
         return self.fileName
