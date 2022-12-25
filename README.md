@@ -26,3 +26,7 @@ This project extracts text from scanned PDFs and stores it in a database.
 4. Run `python manage.py makemigrations`
 5. Run `python manage.py migrate`
 6. Run `python manage.py runserver`
+
+Demo Links:-
+1. Overview - https://drive.google.com/drive/folders/1a_SAVzXwim6I5u0VpDThGB0MoR_J8_e_?usp=sharing
+2. Code - https://drive.google.com/drive/folders/1a_SAVzXwim6I5u0VpDThGB0MoR_J8_e_?usp=sharing
