@@ -28,13 +28,29 @@ def show_pdf(request, pk):
 @login_required(login_url='login')
 def upload_pdf(request):
     if request.method == 'POST':
-        request.FILES['pdf'].name = f'{uuid.uuid4()}-{request.FILES["pdf"].name}'
-        text = handle_uploaded_file(request.FILES['pdf'], request.FILES['pdf'].name)
-        print(text)
+        try:
+            pdf = request.FILES['pdf']
+        except:
+            messages.error(request, 'No file selected')
+            return render(request, 'txt_extract_app/upload_pdf.html')
+
+        if not pdf.name.endswith('.pdf'):
+            messages.error(request, 'File must be a pdf')
+            return render(request, 'txt_extract_app/upload_pdf.html')
+
+        pdf.name = f'{uuid.uuid4()}-{pdf.name}'
+        text = handle_uploaded_file(pdf, pdf.name)
+        
+        document = Document(user=request.user, text=text, fileName=pdf.name, pdf=pdf)
+        document.save()
+
+        messages.success(request, 'File uploaded successfully')
     return render(request, 'txt_extract_app/upload_pdf.html')
 
 
 def login_page(request):
+    if request.user.is_authenticated:
+        return redirect('list_pdf')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -64,5 +80,5 @@ def register_page(request):
             else:
                 user.save()
                 login(request, user)
-                return redirect('login')
+                return redirect('list_pdf')
     return render(request, 'txt_extract_app/login_register.html', {'form': form})
