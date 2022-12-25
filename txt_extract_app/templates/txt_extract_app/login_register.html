@@ -2,6 +2,7 @@
 {% block content %}
 
 {% if login %}
+<h2>Login here</h2>
 <form method="post">
     {% csrf_token %}
 
@@ -16,14 +17,12 @@
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
 {% else %}
+<h2>Register here</h2>
 <form method="post">
     {% csrf_token %}
-    {% for form_element in form %}
     <div class="mb-3">
-        {{ form_element.label_tag }}
-        {{ form_element }}
+        {{ form.as_p }}
     </div>
-    {% endfor %}
     <button type="submit" class="btn btn-primary">Register</button>
 </form>
 {% endif %}
