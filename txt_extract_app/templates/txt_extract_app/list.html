@@ -7,7 +7,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">File cover</th>
             <th scope="col">File Name</th>
             <th scope="col">File Text</th>
             <th scope="col">File Url</th>
@@ -16,8 +16,14 @@
     <tbody>
         {% for document in documents %}
         <tr>
-            <th scope="row"><a href="{{ document.id }}">{{document.id}}</a></th>
-            <td>{{ document.fileName|slice:"37:" }}</td>
+            <td>
+                {% if document.cover %}
+                <img src="{{document.cover.url}}" alt="some-img" width="100px">
+                {% else %}
+                <img src="" alt="img-not-found">
+                {% endif %}
+            </td>
+            <td><a href="{{ document.id }}">{{ document.fileName|slice:"37:" }}</a></td>
             <td>
                 <div>
                     {{ document.text }}
