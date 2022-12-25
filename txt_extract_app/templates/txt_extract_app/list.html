@@ -1,14 +1,12 @@
 {% extends 'main.html' %}
 {% block content %}
-
-{% if documents %}
 <div class="container">
     <form class="d-flex" action="{% url 'home' %}">
         <input class="form-control me-2" type="text" name="q" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 </div>
-
+{% if documents %}
 <div class="container">
     <table class="table">
         <thead>
