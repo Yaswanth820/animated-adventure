@@ -130,3 +130,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TESSERACT_PATH = r'/opt/homebrew/Cellar/tesseract/5.2.0/bin/tesseract'
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'
