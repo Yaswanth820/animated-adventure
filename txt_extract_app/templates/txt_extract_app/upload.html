@@ -6,11 +6,11 @@
     {% csrf_token %}
     <div class="mb-3">
         <label for="pdf" class="form-label">PDF</label>
-        <input type="file" class="form-control" id="pdf">
+        <input type="file" name="pdf" class="form-control" id="pdf" required>
     </div>
     <div class="mb-3">
         <label for="cover" class="form-label">Cover</label>
-        <input type="file" class="form-control" id="cover">
+        <input type="file" name="cover" class="form-control" id="cover" required>
     </div>
     <button type="submit" class="btn btn-primary">Upload</button>
 </form>
