@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">File Name</th>
+            <th scope="col">File Text</th>
+            <th scope="col">File Url</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for document in documents %}
+        <tr>
+            <th scope="row"><a href="{{ document.id }}">{{document.id}}</a></th>
+            <td>{{ document.fileName|slice:"37:" }}</td>
+            <td>
+                <div>
+                    {{ document.text }}
+                </div>
+            </td>
+            <td>
+                <a href="{{ document.pdf.url }}">Download</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
