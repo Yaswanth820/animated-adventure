@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='list_pdf'),
+    path('', views.home, name='home'),
     path('<int:pk>/', views.show_pdf, name='show_pdf'),
     path('upload/', views.upload_document, name='upload'),
     path('login/', views.login_page, name='login'),
