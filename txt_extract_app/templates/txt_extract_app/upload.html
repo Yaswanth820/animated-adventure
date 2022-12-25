@@ -1,12 +1,17 @@
 {% extends 'main.html' %}
 
 {% block content %}
+
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <label for="pdf">PDF:</label>
-    <input type="file" name="pdf" >
-    <label for="cover">Cover:</label>
-    <input type="file" name="cover" >
-    <button type="submit">Upload</button>
+    <div class="mb-3">
+        <label for="pdf" class="form-label">PDF</label>
+        <input type="file" class="form-control" id="pdf">
+    </div>
+    <div class="mb-3">
+        <label for="cover" class="form-label">Cover</label>
+        <input type="file" class="form-control" id="cover">
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
 </form>
 {% endblock %}
