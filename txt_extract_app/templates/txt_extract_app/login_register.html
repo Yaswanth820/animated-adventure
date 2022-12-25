@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% block content %}
+
+{% if login %}
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    {% for form_element in form %}
+    <div class="mb-3">
+        {{ form_element.label_tag }}
+        {{ form_element }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+{% endif %}
+{% endblock %}
