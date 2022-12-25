@@ -29,4 +29,4 @@ This project extracts text from scanned PDFs and stores it in a database.
 
 Demo Links:-
 1. Overview - https://drive.google.com/drive/folders/1a_SAVzXwim6I5u0VpDThGB0MoR_J8_e_?usp=sharing
-2. Code - https://drive.google.com/drive/folders/1a_SAVzXwim6I5u0VpDThGB0MoR_J8_e_?usp=sharing
+2. Code - https://drive.google.com/drive/folders/1a_SAVzXwim6I5u0VpDThGB0MoR_J8_e_?usp=sharing (uploading)
